@@ -1,92 +1,107 @@
-# llama.cpp (PrismML Backend for LM Studio)
+# llama.cpp (PrismML Extension for LM Studio)
 
-Pre-built binaries of the [PrismML-Eng/llama.cpp](https://github.com/PrismML-Eng/llama.cpp) fork, structured and packaged as drop-in backend extensions for LM Studio on Windows.
+> [!IMPORTANT]
+> This repository provides pre-compiled builds of the **PrismML** `llama.cpp` fork, structured specifically as drop-in runtime extensions for **LM Studio**. It enables out-of-the-box execution for PrismML's **Bonsai** ternary models, which are not natively supported by LM Studio's default backend runtimes.
+
+<div align="center">
+
+# llama.cpp (LM Studio Runtime)
+
+**Pre-built PrismML runtime packages for instant LM Studio integration**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20x64-lightgrey.svg)](../../releases)
+[![Target](https://img.shields.io/badge/Target-LM%20Studio%20Extensions-purple.svg)](https://lmstudio.ai/)
+
+[Releases](../../releases) &bull; [Request a Build](../../issues) &bull; [Upstream PrismML](https://github.com/PrismML-Eng/llama.cpp)
+
+</div>
+
+
+## Description
+
+Standard LM Studio releases bundle upstream `llama.cpp` builds that do not include the custom low-bit quantization kernels required to execute PrismML's Bonsai ternary architectures. Attempting to load these models on stock runtimes causes load failures or crashes.
+
+Building the PrismML fork with proper CUDA toolchains, patches, and directory conventions can be tedious. This repository compiles and maintains ready-to-drop backend distributions directly packaged for LM Studio's runtime architecture.
+
+### Supported Model Formats
+* PrismML Bonsai ternary models (`*-PQ2_0.gguf`, `*-Q2_0_g64.gguf`, etc.)
+* Standard GGUF formats compatible with the upstream `llama.cpp` base build
 
 ---
 
-## Overview
+## Supported Backends
 
-PrismML's Bonsai models utilize custom ternary quantization kernels that are not supported by the default `llama.cpp` builds bundled with LM Studio. Attempting to run Bonsai ternary GGUF files in stock LM Studio will result in load failures or fallback errors.
-
-Building the custom runtime from source with appropriate CUDA dependencies can be complex and time-consuming. This repository provides ready-to-use release builds configured specifically to work inside LM Studio's backend extension system.
-
----
-
-## Requirements
-
-* Windows 10/11 (64-bit)
-* NVIDIA GPU with supported CUDA drivers installed
-* [LM Studio](https://lmstudio.ai/) installed
+| Backend | Platform | Target Devices | Build Availability |
+| :--- | :--- | :--- | :--- |
+| **CUDA 13.x** | Windows x64 | NVIDIA RTX Series | Available in [Releases](../../releases) |
+| **CUDA 12.x** | Windows x64 | NVIDIA GTX / RTX Series | On request |
+| **CPU / AVX2** | Windows x64 | x86_64 CPUs | On request |
 
 ---
+---
 
-## Installation
+## Quick Start
 
 ### 1. Download the Release
+Download the latest `.zip` archive matching your CUDA environment from the [Releases](../../releases) tab.
 
-Go to the [Releases](../../releases) section of this repository and download the latest `.zip` archive matching your CUDA setup.
-
-The archive will contain a top-level directory named according to the build version and CUDA configuration, structured similar to:
-
+The archive contains an LM Studio runtime folder structured similar to:
 ```text
-llama.cpp-prism-b<build>-<hash>-bin-win-cuda-<version>-x64-lm-studio
+llama.cpp-prism-b<build>-<commit>-bin-win-cuda-<version>-x64-lm-studio
 ```
+*(Exact naming varies by build, e.g. `llama.cpp-prism-b10709-9a9394a-bin-win-cuda-13.3-x64-lm-studio`)*.
 
-*(For example: `llama.cpp-prism-b10709-9a9394a-bin-win-cuda-13.3-x64-lm-studio` or newer builds depending on release).*
-
----
-
-### 2. Copy to LM Studio Extensions
-
+### 2. Install to LM Studio Backends
 1. Extract the downloaded `.zip` file.
-2. Locate the extracted backend folder (the folder containing the binaries and configuration files).
-3. Copy this entire folder directly into LM Studio's backends directory:
+2. Copy the inner folder directly into LM Studio's backend extensions directory:
 
 ```text
 C:\Users\<Username>\.lmstudio\extensions\backends\
 ```
 
-*Quick access tip: You can press `Win + R`, paste the following path, and hit Enter:*
+> **Shortcut:** Press `Win + R`, paste `%USERPROFILE%\.lmstudio\extensions\backends`, and press Enter.
 
-```text
-%USERPROFILE%\.lmstudio\extensions\backends
-```
-
-After pasting, your directory tree should look similar to:
-
+Your directory layout should look like this:
 ```text
 C:\Users\<Username>\.lmstudio\extensions\backends\
-└── llama.cpp-prism-<build-info>-bin-win-cuda-<version>-x64-lm-studio\
-    ├── ... (binaries and runtime files)
+└── llama.cpp-prism-...-lm-studio\
+    ├── ... (binaries, runtime files, package metadata)
 ```
 
----
-
-### 3. Select the Runtime in LM Studio
-
-1. Open (or restart) **LM Studio**.
-2. Open **Settings** (gear icon).
-3. Navigate to the **Runtime** section.
-4. Under the **GGUF** runtime selector, choose the PrismML backend. It will appear with a name similar to:
+### 3. Activate in LM Studio
+1. Start (or restart) **LM Studio**.
+2. Open **Settings** (gear icon) and go to **Runtime**.
+3. Under the **GGUF** section, select the newly added runtime:
    ```text
    Prism ML Cuda xx.x llama.cpp (Windows)
    ```
-5. You can now load and run PrismML Bonsai ternary models directly in LM Studio.
+4. Load your PrismML Bonsai ternary model and run inference.
+
+---
+
+## Requesting a Build or Version
+
+If you need a release variant that is not currently uploaded (such as a specific CUDA version, an AVX2 CPU-only package, or an update tracking a newer PrismML commit):
+
+1. Go to the [Issues](../../issues) tab of this repository.
+2. Open a **New Issue**.
+3. Set the title to something like `Build Request: <CUDA version / Arch / Commit>`.
+You can find all versions that can be requested to be precompiled for LM Studio in [PrismML-Eng/llama.cpp/releases](https://github.com/PrismML-Eng/llama.cpp/releases/tag/prism-b10709-9a9394a)
+> [!IMPORTANT]
+> Requests for versions that are not able to be run on Windows with an RTX Series GPU or x86_64 CPUs will not be fulfilled as i do not have the hardware to test such. Not all versions listed can certainly be used in LM Studio. On request it will be checked if it works or not. 
 
 ---
 
 ## Notes & Troubleshooting
 
-* **Backend not appearing in LM Studio:** If the backend does not show up in the settings list, completely exit LM Studio and start it again. Also confirm that you pasted the inner folder itself into `...\extensions\backends\`, not nested folders or just loose files.
-* **CUDA Driver Compatibility:** Ensure your installed NVIDIA GPU driver supports the CUDA version indicated in the release build name.
-* **Updates:** Whenever a new version is released here, simply repeat the process and remove old backend folders from `.lmstudio\extensions\backends\` if you no longer need them.
+* **Runtime does not appear in LM Studio:** Ensure you copied the backend directory itself into `.lmstudio\extensions\backends\`, not nested folders or standalone loose files. A full restart of LM Studio is required to refresh backend detection.
+* **Driver requirements:** Ensure your NVIDIA display driver supports the CUDA version specified in the release title.
 
 ---
 
-## Credits & Upstream
+## Credits
 
-* Upstream PrismML fork: [PrismML-Eng/llama.cpp](https://github.com/PrismML-Eng/llama.cpp)
-* Base runtime: [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp)
-* Application: [LM Studio](https://lmstudio.ai/)
-
-Licensed under the MIT License. See [LICENSE](LICENSE) for details.
+* PrismML fork and ternary kernels: [PrismML-Eng/llama.cpp](https://github.com/PrismML-Eng/llama.cpp)
+* Base inference runtime: [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp)
+* Desktop environment: [LM Studio](https://lmstudio.ai/)
