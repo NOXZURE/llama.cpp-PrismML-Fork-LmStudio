@@ -22,7 +22,7 @@
 
 Standard LM Studio releases bundle upstream `llama.cpp` builds that do not include the custom low-bit quantization kernels required to execute PrismML's Bonsai ternary architectures. Attempting to load these models on stock runtimes causes load failures or crashes.
 
-Building the PrismML fork with proper CUDA toolchains, patches, and directory conventions can be tedious. This repository compiles and maintains ready-to-drop backend distributions directly packaged for LM Studio's runtime architecture.
+Building the PrismML fork with proper CUDA dll files and all the other required files can be tedious and doesn't always work. This repository contains ready-to-drop backend distributions directly packaged for LM Studio's runtime architecture.
 
 ### Supported Model Formats
 * PrismML Bonsai ternary models (`*-PQ2_0.gguf`, `*-Q2_0_g64.gguf`, etc.)
