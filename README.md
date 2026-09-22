@@ -1,7 +1,11 @@
 # llama.cpp (PrismML Extension for LM Studio)
 
 > [!IMPORTANT]
-> This repository provides pre-compiled builds of the **PrismML** `llama.cpp` fork, structured specifically as drop-in runtime extensions for **LM Studio**. It enables out-of-the-box execution for PrismML's **Bonsai** ternary models, which are not natively supported by LM Studio's default backend runtimes.
+> This repository provides **pre-compiled PrismML `llama.cpp` runtimes for LM Studio**, packaged as drop-in backend extensions for **Windows**. It allows you to **run PrismML Bonsai 1-bit / ternary GGUF models directly in LM Studio**, including models such as `*-PQ2_0.gguf` and `*-Q2_0_g64.gguf`.
+>
+> **Stock LM Studio `llama.cpp` runtimes do not include the custom PrismML kernels required by these ternary/Bonsai models.** If LM Studio cannot load a PrismML Bonsai model, use the corresponding PrismML runtime provided by this repository instead.
+>
+> **No compilation is required.** Download the appropriate pre-built runtime from [Releases](../../releases), extract it, and install the backend into `%USERPROFILE%\.lmstudio\extensions\backends\`. Look at Quick Start for a full guide.
 
 <div align="center">
 
