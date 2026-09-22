@@ -28,9 +28,7 @@ Standard LM Studio releases bundle upstream `llama.cpp` builds that do not inclu
 
 Building the PrismML fork with proper CUDA dll files and all the other required files can be tedious and doesn't always work. This repository contains ready-to-drop backend distributions directly packaged for LM Studio's runtime architecture.
 
-### Supported Model Formats
-* PrismML Bonsai ternary models (`*-PQ2_0.gguf`, `*-Q2_0_g64.gguf`, etc.)
-* Standard GGUF formats compatible with the upstream `llama.cpp` base build
+It does not break, delete or overwrite old LM Studio Files. It just adds another Runtime you can select in the settings. It is made to work directly in LM Studios GUI without needing to use the demo server made by PrismMl.
 
 ---
 
