@@ -38,7 +38,7 @@ It does not break, delete or overwrite old LM Studio Files. It just adds another
 | :--- | :--- | :--- | :--- |
 | **CUDA 13.3 (13.4)** | Windows x64 | NVIDIA RTX Series | Available in [Releases](../../releases) |
 | **CUDA 12.x** | Windows x64 | NVIDIA GTX / RTX Series | On request |
-| **CPU / AVX2** | Windows x64 | x86_64 CPUs | In work |
+| **CPU / AVX2** | Windows x64 | x86_64 CPUs | Available in [Releases](../../releases) |
 
 ---
 ---
