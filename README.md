@@ -46,7 +46,7 @@ It does not break, delete or overwrite old LM Studio Files. It just adds another
 ## Quick Start
 
 ### 1. Download the Release
-Download the latest `.zip` archive from the [Releases](../../releases) tab matching your CUDA version. Check it using `nvidia-smi` command in cmd. If your Cuda is outdated. Update your drivers as it comes included with it.
+Download the latest `.zip` archive that is for the device you want to run it on ( There are multiple versions between CPU and GPU), from the [Releases](../../releases) tab matching your CUDA version. Check it using `nvidia-smi` command in cmd. If your Cuda is outdated. Update your drivers as it comes included with it.
 
 The archive contains an LM Studio runtime folder structured similar to:
 ```text
