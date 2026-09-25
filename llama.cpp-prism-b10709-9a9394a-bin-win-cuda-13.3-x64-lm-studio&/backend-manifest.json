@@ -1,0 +1,55 @@
+{
+  "version": "2.41.0",
+  "domains": [
+    "llm",
+    "embedding"
+  ],
+  "engine": "llama.cpp",
+  "extension_type": "engine",
+  "target_libraries": [
+    {
+      "name": "llm_engine_cuda12.node",
+      "type": "llm_engine",
+      "version": "0.1.2"
+    },
+    {
+      "name": "liblmstudio_bindings_cuda12.node",
+      "type": "liblmstudio",
+      "version": "0.2.26"
+    }
+  ],
+  "platform": "win",
+  "cpu": {
+    "architecture": "x86_64",
+    "instruction_set_extensions": [
+      "AVX2"
+    ]
+  },
+  "gpu": {
+    "make": "Nvidia",
+    "framework": "CUDA",
+    "targets": [
+      "7.5",
+      "8.0",
+      "8.9",
+      "9.0",
+      "10.0",
+      "12.0"
+    ],
+    "minimum_driver_version": "12040"
+  },
+  "supported_model_formats": [
+    "gguf"
+  ],
+  "manifest_version": "4",
+  "vendor_lib_package_names": [
+    "win-llama-cuda12-vendor-v2"
+  ],
+  "minimum_lmstudio_version": "0.4.0+15",
+  "minimum_llmster_version": "0.0.1+9",
+  "engine_protocol_server": {
+    "runtime_kind": "llama-server",
+    "executable_relative_path": "llama-server.exe"
+  },
+  "name": "llama.cpp-win-x86_64-prism-cuda13"
+}

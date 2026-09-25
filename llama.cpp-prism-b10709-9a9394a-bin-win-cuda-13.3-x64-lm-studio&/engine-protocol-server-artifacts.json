@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "runtime_kind": "llama-server",
+  "executable_relative_path": "llama-server.exe",
+  "files": [
+    { "relative_path": "ggml-base.dll", "executable": false },
+    { "relative_path": "ggml-cpu.dll", "executable": false },
+    { "relative_path": "ggml-cuda.dll", "executable": false },
+    { "relative_path": "ggml_llamacpp.dll", "executable": false },
+    { "relative_path": "llama-common.dll", "executable": false },
+    { "relative_path": "llama-server-impl.dll", "executable": false },
+    { "relative_path": "llama-server.exe", "executable": true },
+    { "relative_path": "llama.dll", "executable": false },
+    { "relative_path": "mtmd.dll", "executable": false }
+  ]
+}
